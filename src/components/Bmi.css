@@ -1,0 +1,25 @@
+h1{
+    color: #f1c48f;
+}
+h2:hover{
+    color: rgb(153, 71, 71);
+}
+body{
+    background-color: #f1c48f;
+}
+.backdrop{
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 85%;
+    
+}
+button{
+    color: #f1c48f;
+    background-color: rgb(202, 93, 93);
+    border-color: bisque;
+}
+button:hover{
+    color: rgb(202, 93, 93);
+    background-color: #f1c48f;
+    border-color: rgb(202, 93, 93);
+
+}
