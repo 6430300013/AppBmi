@@ -1,8 +1,11 @@
 h1{
     color: #f1c48f;
 }
-h2:hover{
+h2{
     color: rgb(153, 71, 71);
+}
+h2:hover{
+    color: #f1c48f;
 }
 body{
     background-color: #f1c48f;

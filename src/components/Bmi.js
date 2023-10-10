@@ -1,54 +1,61 @@
 import './Bmi.css'
-import { useState } from "react";
+import { useRef, useState } from "react";
+
+const Input = ({Referent,  inputLabel}) => {
+    return(
+        <div>
+            <label>{inputLabel}</label>
+            <input ref={Referent}  type='text'/>
+        </div>
+    )
+}
 
 export const BmiText = () => {
-    const [weight, setWeight] = useState(0);
-    const [height, setHeight] = useState(0);
+    const weight = useRef(null);
+    const height = useRef(null);
     const [Bmi, setBmi] = useState(0)
-    function onWeightChange(event){
-        setWeight(event.target.value)
-    }
-    function onHeightChange(event){
-        setHeight(event.target.value)
-    }
+
     const calBmi = () => {
-        setBmi(weight / Math.pow(height/100, 2))
+        setBmi(weight.current.value / Math.pow(height.current.value/100, 2))
     }
 
     return(
-        <>  <body>
-            <center>
-            <br/>
+         
+        <body>
+            <center><br/>
+
             <div class="backdrop">
-            <br/>
-            <h1>แอพคำนวน BMI</h1>
-            <br/><br/>
+                <br/>
+                <h1>แอพคำนวน BMI</h1>
+                <br/>
             
-            
-            <div>You Input Height
-            <input type="text" value={height}
-                onChange={event=>onHeightChange(event)}
-            >
-            </input>
-            <br/><br/>
-            
-            You Input Weight
-            <input type="text" value={weight}
-                onChange={event=>onWeightChange(event)}
-            >
-            </input></div>
+                <div>
+                    You Input Height (cm.)
+                    <Input type="text" Referent={height}/>
+                    <br/>
+                    You Input Weight (kg.)
+                    <Input type="text" Referent={weight} />
+                </div>
 
-            <br/>
-            <button onClick={()=>calBmi()}>คำนวณ</button>
+                <br/>
 
-            <br/><br/> 
-            Your BMI : { Bmi.toFixed(2) } 
-            <h2>{Bmi < 18.5 ? 'ต่ำกว่าเกณฑ์' : Bmi > 30 ? 'เกินเกณฑ์' : 'ปกติ'}</h2>
-            <br/><br/>
-                
+                <button onClick={()=>calBmi()}>
+                    คำนวณ
+                </button>
+
+                <br/><br/> 
+
+                <div>
+                    Your BMI : { Bmi.toFixed(2) } 
+                    <h2>
+                        {Bmi < 18.5 ? 'ต่ำกว่าเกณฑ์' : Bmi > 30 ? 'เกินเกณฑ์ (โรคอ้วนระดับที่ 2 )' : Bmi > 25.0 ? 'เกินเกณฑ์ (โรคอ้วนระดับที่ 1)':  Bmi > 23.0 ? 'เกินเกณฑ์ (น้ำหนักเกิน)'  : 'เกณฑ์ปกติ (สมส่วน)'}
+                    </h2>
+                </div>
+
+                <br/><br/>
             </div>
+            
             </center>
-            </body>
-        </>    
+        </body>
     )
 }
